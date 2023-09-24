@@ -9,12 +9,20 @@ var _destinationRouter = _interopRequireDefault(require("./routes/destination-ro
 var _swaggerMiddleware = _interopRequireDefault(require("./middlewares/swagger-middleware.js"));
 var _crewRouter = _interopRequireDefault(require("./routes/crew-router.js"));
 var _technologyRouter = _interopRequireDefault(require("./routes/technology-router.js"));
+var _fs = _interopRequireDefault(require("fs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 _dotenv.default.config();
 (0, _mongo.default)();
 const app = (0, _express.default)();
 app.use(_bodyParser.default.json());
 app.use((0, _cors.default)());
+app.use('/images', _express.default.static('assets'));
+app.get('/api/images', (req, res) => {
+  const imageFiles = _fs.default.readdirSync('assets');
+  res.json({
+    images: imageFiles
+  });
+});
 app.use("/api", _destinationRouter.default);
 app.use("/api", _crewRouter.default);
 app.use("/api", _technologyRouter.default);

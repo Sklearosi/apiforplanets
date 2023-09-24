@@ -7,6 +7,7 @@ import destinationRouter from "./routes/destination-router.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
 import crewRouter from "./routes/crew-router.js";
 import techologyRouter from "./routes/technology-router.js";
+import fs from "fs";
 
 dotenv.config();
 connect();
@@ -15,6 +16,16 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use('/images', express.static('assets'));
+
+app.get('/api/images', (req, res) => {
+    
+    const imageFiles = fs.readdirSync('assets');
+    
+   
+    res.json({ images: imageFiles });
+  });
 
 app.use("/api", destinationRouter)
 app.use("/api", crewRouter)
