@@ -16,7 +16,11 @@ _dotenv.default.config();
 const app = (0, _express.default)();
 app.use(_bodyParser.default.json());
 app.use((0, _cors.default)());
-app.use('/images', _express.default.static('assets'));
+app.use('/images/crew', _express.default.static('assets/crew'));
+app.use('/images/destination', _express.default.static('assets/destination'));
+app.use('/images/home', _express.default.static('assets/home'));
+app.use('/images/shared', _express.default.static('assets/shared'));
+app.use('/images/technology', _express.default.static('assets/technology'));
 app.get('/api/images', (req, res) => {
   const imageFiles = _fs.default.readdirSync('assets');
   res.json({

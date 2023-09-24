@@ -17,7 +17,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/images', express.static('assets'));
+app.use('/images/crew', express.static('assets/crew'));
+app.use('/images/destination', express.static('assets/destination'));
+app.use('/images/home', express.static('assets/home'));
+app.use('/images/shared', express.static('assets/shared'));
+app.use('/images/technology', express.static('assets/technology'));
 
 app.get('/api/images', (req, res) => {
     
