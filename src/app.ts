@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import connect from "./config/mongo.js";
 import destinationRouter from "./routes/destination-router.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
+import crewRouter from "./routes/crew-router.js";
+import techologyRouter from "./routes/technology-router.js";
 
 dotenv.config();
 connect();
@@ -15,6 +17,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/api", destinationRouter)
+app.use("/api", crewRouter)
+app.use("/api", techologyRouter)
 
 app.use("/", ...swaggerMiddleware)
 

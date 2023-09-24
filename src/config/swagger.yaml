@@ -57,3 +57,73 @@ paths:
           description: No destinations found
         "500":
           description: Internal Server Error
+  /get-technology:
+    get:
+      tags:
+        - Technology
+      summary: Get all technologies
+      description: Get a list of all technologies.
+      security:
+        - bearerAuth: [] # Add authentication requirements if needed
+      responses:
+        "200":
+          description: A list of technologies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    images:
+                      type: object
+                      properties:
+                        portrait:
+                          type: string
+                        landscape:
+                          type: string
+                    description:
+                      type: string
+        "404":
+          description: No technologies found
+        "500":
+          description: Internal Server Error
+  /get-crew:
+    get:
+      tags:
+        - Crew
+      summary: Get all crew members
+      description: Get a list of all crew members.
+      security:
+        - bearerAuth: [] # Add authentication requirements if needed
+      responses:
+        "200":
+          description: A list of crew members.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    images:
+                      type: object
+                      properties:
+                        png:
+                          type: string
+                        webp:
+                          type: string
+                    role:
+                      type: string
+                    bio:
+                      type: string
+        "404":
+          description: No crew members found
+        "500":
+          description: Internal Server Error         
