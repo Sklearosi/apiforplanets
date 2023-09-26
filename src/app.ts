@@ -17,7 +17,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/images', express.static('public/assets'));
+app.use('/assets', express.static('public/assets'));
 
 
 
